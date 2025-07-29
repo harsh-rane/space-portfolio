@@ -3,17 +3,23 @@
 import React, { useRef, useState, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
-// @ts-ignore
 import * as random from 'maath/random';
+import * as THREE from 'three';
+import { Points as DreiPoints } from '@react-three/drei';
+import { ComponentProps } from 'react';
 
-const StarBackground = (props:any) => {
-    const ref: any = useRef(null);
+type PointsProps = ComponentProps<typeof DreiPoints>;
+
+const StarBackground = (props:PointsProps) => {
+    const ref = useRef<THREE.Points>(null);
     const [sphere] = useState(() =>
-        random.inSphere(new Float32Array(6000), { radius: 1.2 })
+      random.inSphere(new Float32Array(6000), { radius: 1.2 }) as Float32Array
     );
     useFrame((state, delta) => {
-        ref.current.rotation.x -= delta / 10;
-        ref.current.rotation.y -= delta / 15;
+        if (ref.current) {
+          ref.current.rotation.x -= delta / 10;
+          ref.current.rotation.y -= delta / 15;
+        }
     })
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
