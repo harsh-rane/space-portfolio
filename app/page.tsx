@@ -1,6 +1,6 @@
 import Encryption from "@/components/main/Encryption";
 import Hero from "@/components/main/Hero";
-import Projects from "@/components/main/Projects";
+// import Projects from "@/components/main/Projects";
 import Skills from "@/components/main/Skills";
 import Footer from "@/components/main/Footer";
 
@@ -11,7 +11,7 @@ export default function Home() {
         <Hero />
         <Skills />
         <Encryption />
-        <Projects />
+        {/* <Projects /> */}
         <Footer />
       </div>
     </main>
